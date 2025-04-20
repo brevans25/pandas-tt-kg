@@ -1,7 +1,7 @@
 [tool.black]
 line-length = 120
 target-version = ["py311"]
-skip-string-normalization = false  # keep this false if you want Black to normalize quotes
+skip-string-normalization = false  # Black will normalize quotes (to double)
 
 [tool.ruff]
 line-length = 120
@@ -10,11 +10,56 @@ extend-select = ["E", "F", "I"]
 extend-ignore = ["E501"]
 
 [tool.ruff.lint]
-select = ["ALL"]
-ignore = ["E501"]
-
-[tool.ruff.format]
-quote-style = "double"
-indent-style = "space"
-line-ending = "auto"
-
+ignore = [
+  "E501",     # Line too long
+  "PD901",    # Pandas .apply() vectorization nags
+  "T201",     # Allow print statements
+  "Q000",     # Inline string quote style (let Black handle it)
+  "C408",     # Unnecessary dict/list calls
+  "COM819",   # Trailing commas are fine
+  "E731",     # Assigning lambdas (relax, it's fine sometimes)
+  "ERA001",   # Allow commented-out code during dev
+  "G004",     # Allow f-strings in logging
+  "RET503",   # Allow explicit `return None`
+  "RUF012",   # Mutable class attributes
+  "S311",     # Randomness isn't cryptographic — and that’s OK
+  "SIM108",   # Ternary operator hate? Not today, Satan
+  "SIM300",   # Yoda conditions ("if not foo is bar") — let me live
+  "TRY003",   # Long exception messages — let me vent
+  # "TRY004", # You can uncomment if needed
+  "TRY301"    # Raising something abstract — let’s be flexible
+]
+select = [
+  "A",       # flake8-builtins
+  "ASYNC",   # Async rules
+  "B",       # flake8-bugbear
+  "BLE",     # Blind excepts
+  "C4",      # List/dict/set comprehensions
+  "COM",     # Commas
+  "DTZ",     # Datetimez
+  "E",       # pycodestyle
+  "ERA",     # Commented-out code
+  "EXE",     # Executable permissions
+  "F",       # pyflakes
+  "FLY",     # Flynt (auto f-strings)
+  "G",       # Logging format
+  "I",       # isort
+  "ICN",     # Import conventions
+  "ISC",     # Implicit str concat
+  "LOG",     # Logging rules
+  "PERF",    # Performance
+  "PIE",     # Python idioms
+  "PLC",     # pylint conventions
+  "PLE",     # pylint errors
+  "PLW",     # pylint warnings
+  "PT",      # Pytest style
+  "PTH",     # Pathlib enforcement
+  "RET",     # Return rules
+  "RUF",     # Native Ruff rules
+  "S",       # Bandit (security)
+  "SIM",     # Simplify
+  "T",       # Debugger rules
+  "TRY",     # Try/except formatting
+  "UP",      # pyupgrade
+  "W"        # pycodestyle warnings
+]
