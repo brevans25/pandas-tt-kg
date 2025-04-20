@@ -1,0 +1,20 @@
+[tool.black]
+line-length = 120
+target-version = ["py311"]
+skip-string-normalization = false  # keep this false if you want Black to normalize quotes
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-select = ["E", "F", "I"]
+extend-ignore = ["E501"]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
